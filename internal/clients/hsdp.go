@@ -15,7 +15,7 @@ import (
 
 	"github.com/upbound/upjet/pkg/terraform"
 
-	"github.com/upbound/upjet-provider-template/apis/v1beta1"
+	"github.com/philips-software/provider-hsdp/apis/v1beta1"
 )
 
 const (
@@ -24,7 +24,7 @@ const (
 	errGetProviderConfig    = "cannot get referenced ProviderConfig"
 	errTrackUsage           = "cannot track ProviderConfig usage"
 	errExtractCredentials   = "cannot extract credentials"
-	errUnmarshalCredentials = "cannot unmarshal template credentials as JSON"
+	errUnmarshalCredentials = "cannot unmarshal hsdp credentials as JSON"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
@@ -67,6 +67,20 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 			"username": creds["username"],
 			"password": creds["password"],
 		}*/
+                ps.Configuration = map[string]interface{}{
+                        "region":              creds["region"],
+                        "environment":         creds["environment"],
+                        "service_id":          creds["service_id"],
+                        "service_private_key": creds["service_private_key"],
+                        "oauth2_client_id":    creds["oauth2_client_id"],
+                        "oauth2_password":     creds["oauth2_password"],
+                        "cartel_host":         creds["cartel_host"],
+                        "cartel_secret":       creds["cartel_secret"],
+                        "cartel_token":        creds["cartel_token"],
+                        "uaa_username":        creds["uaa_username"],
+                        "uaa_password":        creds["uaa_password"],
+                        "debug_log":           creds["debug_log"],
+                }
 		return ps, nil
 	}
 }

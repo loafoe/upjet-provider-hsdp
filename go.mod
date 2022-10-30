@@ -1,4 +1,4 @@
-module github.com/upbound/upjet-provider-template
+module github.com/philips-software/provider-hsdp
 
 go 1.19
 
