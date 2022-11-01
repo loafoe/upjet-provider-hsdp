@@ -36,6 +36,14 @@ func GetProvider() *ujconfig.Provider {
 		// add custom config functions
 		iam.GroupConfigure,
 		iam.OrgConfigure,
+		iam.ApplicationConfigure,
+		iam.EmailTemplateConfigure,
+		iam.ClientConfigure,
+		iam.PropositionConfigure,
+		iam.ServiceConfigure,
+		iam.RoleConfigure,
+		iam.PasswordPolicyConfigure,
+		iam.RoleSharingPolicyConfigure,
 	} {
 		configure(pc)
 	}

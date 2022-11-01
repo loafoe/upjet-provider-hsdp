@@ -10,8 +10,16 @@ import "github.com/upbound/upjet/pkg/config"
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
 	// Import requires using a randomly generated ID from provider: nl-2e21sda
-	"hsdp_iam_group": config.IdentifierFromProvider,
-	"hsdp_iam_org":   config.IdentifierFromProvider,
+	"hsdp_iam_group":               config.IdentifierFromProvider,
+	"hsdp_iam_org":                 config.IdentifierFromProvider,
+	"hsdp_iam_application":         config.IdentifierFromProvider,
+	"hsdp_iam_client":              config.IdentifierFromProvider,
+	"hsdp_iam_email_template":      config.IdentifierFromProvider,
+	"hsdp_iam_proposition":         config.IdentifierFromProvider,
+	"hsdp_iam_service":             config.IdentifierFromProvider,
+	"hsdp_iam_role":                config.IdentifierFromProvider,
+	"hsdp_iam_password_policy":     config.IdentifierFromProvider,
+	"hsdp_iam_role_sharing_policy": config.IdentifierFromProvider,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the
