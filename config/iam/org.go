@@ -6,6 +6,6 @@ import "github.com/upbound/upjet/pkg/config"
 func OrgConfigure(p *config.Provider) {
 	p.AddResourceConfigurator("hsdp_iam_org", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
-		//r.Kind = "Organization"
+		r.Kind = "Organization"
 	})
 }

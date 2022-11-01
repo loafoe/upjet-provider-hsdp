@@ -16,8 +16,8 @@ func (l *GroupList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this OrgList.
-func (l *OrgList) GetItems() []resource.Managed {
+// GetItems of this OrganizationList.
+func (l *OrganizationList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

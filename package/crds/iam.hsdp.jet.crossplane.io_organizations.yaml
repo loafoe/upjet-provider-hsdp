@@ -5,7 +5,7 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: orgs.iam.hsdp.jet.crossplane.io
+  name: organizations.iam.hsdp.jet.crossplane.io
 spec:
   group: iam.hsdp.jet.crossplane.io
   names:
@@ -13,10 +13,10 @@ spec:
     - crossplane
     - managed
     - hsdpjet
-    kind: Org
-    listKind: OrgList
-    plural: orgs
-    singular: org
+    kind: Organization
+    listKind: OrganizationList
+    plural: organizations
+    singular: organization
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Org is the Schema for the Orgs API. <no value>
+        description: Organization is the Schema for the Organizations API. <no value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: OrgSpec defines the desired state of Org
+            description: OrganizationSpec defines the desired state of Organization
             properties:
               deletionPolicy:
                 default: Delete
@@ -254,7 +254,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: OrgStatus defines the observed state of Org.
+            description: OrganizationStatus defines the observed state of Organization.
             properties:
               atProvider:
                 properties:

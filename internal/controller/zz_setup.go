@@ -10,7 +10,7 @@ import (
 	"github.com/upbound/upjet/pkg/controller"
 
 	group "github.com/philips-software/provider-hsdp/internal/controller/iam/group"
-	org "github.com/philips-software/provider-hsdp/internal/controller/iam/org"
+	organization "github.com/philips-software/provider-hsdp/internal/controller/iam/organization"
 	providerconfig "github.com/philips-software/provider-hsdp/internal/controller/providerconfig"
 )
 
@@ -19,7 +19,7 @@ import (
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		group.Setup,
-		org.Setup,
+		organization.Setup,
 		providerconfig.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {

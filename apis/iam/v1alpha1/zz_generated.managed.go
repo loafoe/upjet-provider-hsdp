@@ -73,68 +73,68 @@ func (mg *Group) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
-// GetCondition of this Org.
-func (mg *Org) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this Organization.
+func (mg *Organization) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetDeletionPolicy of this Org.
-func (mg *Org) GetDeletionPolicy() xpv1.DeletionPolicy {
+// GetDeletionPolicy of this Organization.
+func (mg *Organization) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
-// GetProviderConfigReference of this Org.
-func (mg *Org) GetProviderConfigReference() *xpv1.Reference {
+// GetProviderConfigReference of this Organization.
+func (mg *Organization) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
 }
 
 /*
-GetProviderReference of this Org.
+GetProviderReference of this Organization.
 Deprecated: Use GetProviderConfigReference.
 */
-func (mg *Org) GetProviderReference() *xpv1.Reference {
+func (mg *Organization) GetProviderReference() *xpv1.Reference {
 	return mg.Spec.ProviderReference
 }
 
-// GetPublishConnectionDetailsTo of this Org.
-func (mg *Org) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+// GetPublishConnectionDetailsTo of this Organization.
+func (mg *Organization) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
 	return mg.Spec.PublishConnectionDetailsTo
 }
 
-// GetWriteConnectionSecretToReference of this Org.
-func (mg *Org) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+// GetWriteConnectionSecretToReference of this Organization.
+func (mg *Organization) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this Org.
-func (mg *Org) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this Organization.
+func (mg *Organization) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetDeletionPolicy of this Org.
-func (mg *Org) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+// SetDeletionPolicy of this Organization.
+func (mg *Organization) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
 }
 
-// SetProviderConfigReference of this Org.
-func (mg *Org) SetProviderConfigReference(r *xpv1.Reference) {
+// SetProviderConfigReference of this Organization.
+func (mg *Organization) SetProviderConfigReference(r *xpv1.Reference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
 /*
-SetProviderReference of this Org.
+SetProviderReference of this Organization.
 Deprecated: Use SetProviderConfigReference.
 */
-func (mg *Org) SetProviderReference(r *xpv1.Reference) {
+func (mg *Organization) SetProviderReference(r *xpv1.Reference) {
 	mg.Spec.ProviderReference = r
 }
 
-// SetPublishConnectionDetailsTo of this Org.
-func (mg *Org) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+// SetPublishConnectionDetailsTo of this Organization.
+func (mg *Organization) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
 	mg.Spec.PublishConnectionDetailsTo = r
 }
 
-// SetWriteConnectionSecretToReference of this Org.
-func (mg *Org) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+// SetWriteConnectionSecretToReference of this Organization.
+func (mg *Organization) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }

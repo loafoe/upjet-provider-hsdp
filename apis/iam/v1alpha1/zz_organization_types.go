@@ -13,13 +13,13 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type OrgObservation struct {
+type OrganizationObservation struct {
 	Active *bool `json:"active,omitempty" tf:"active,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
-type OrgParameters struct {
+type OrganizationParameters struct {
 
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
@@ -46,51 +46,51 @@ type OrgParameters struct {
 	WaitForDelete *bool `json:"waitForDelete,omitempty" tf:"wait_for_delete,omitempty"`
 }
 
-// OrgSpec defines the desired state of Org
-type OrgSpec struct {
+// OrganizationSpec defines the desired state of Organization
+type OrganizationSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     OrgParameters `json:"forProvider"`
+	ForProvider     OrganizationParameters `json:"forProvider"`
 }
 
-// OrgStatus defines the observed state of Org.
-type OrgStatus struct {
+// OrganizationStatus defines the observed state of Organization.
+type OrganizationStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        OrgObservation `json:"atProvider,omitempty"`
+	AtProvider        OrganizationObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// Org is the Schema for the Orgs API. <no value>
+// Organization is the Schema for the Organizations API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,hsdpjet}
-type Org struct {
+type Organization struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              OrgSpec   `json:"spec"`
-	Status            OrgStatus `json:"status,omitempty"`
+	Spec              OrganizationSpec   `json:"spec"`
+	Status            OrganizationStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// OrgList contains a list of Orgs
-type OrgList struct {
+// OrganizationList contains a list of Organizations
+type OrganizationList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Org `json:"items"`
+	Items           []Organization `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Org_Kind             = "Org"
-	Org_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Org_Kind}.String()
-	Org_KindAPIVersion   = Org_Kind + "." + CRDGroupVersion.String()
-	Org_GroupVersionKind = CRDGroupVersion.WithKind(Org_Kind)
+	Organization_Kind             = "Organization"
+	Organization_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Organization_Kind}.String()
+	Organization_KindAPIVersion   = Organization_Kind + "." + CRDGroupVersion.String()
+	Organization_GroupVersionKind = CRDGroupVersion.WithKind(Organization_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Org{}, &OrgList{})
+	SchemeBuilder.Register(&Organization{}, &OrganizationList{})
 }
