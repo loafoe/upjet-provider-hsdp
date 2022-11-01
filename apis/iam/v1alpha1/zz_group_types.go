@@ -31,20 +31,60 @@ type GroupParameters struct {
 	// +kubebuilder:validation:Optional
 	IAMDeviceBugWorkaround *bool `json:"iamDeviceBugWorkaround,omitempty" tf:"iam_device_bug_workaround,omitempty"`
 
-	// +kubebuilder:validation:Required
-	ManagingOrganization *string `json:"managingOrganization" tf:"managing_organization,omitempty"`
+	// +crossplane:generate:reference:type=Organization
+	// +crossplane:generate:reference:refFieldName=OrganizationRef
+	// +kubebuilder:validation:Optional
+	ManagingOrganization *string `json:"managingOrganization,omitempty" tf:"managing_organization,omitempty"`
+
+	// Selector for a Organization to populate managingOrganization.
+	// +kubebuilder:validation:Optional
+	ManagingOrganizationSelector *v1.Selector `json:"managingOrganizationSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
-	// +kubebuilder:validation:Required
-	Roles []*string `json:"roles" tf:"roles,omitempty"`
+	// Reference to a Organization to populate managingOrganization.
+	// +kubebuilder:validation:Optional
+	OrganizationRef *v1.Reference `json:"organizationRef,omitempty" tf:"-"`
 
+	// References to Role to populate roles.
+	// +kubebuilder:validation:Optional
+	RoleRef []v1.Reference `json:"roleRef,omitempty" tf:"-"`
+
+	// +crossplane:generate:reference:type=Role
+	// +crossplane:generate:reference:refFieldName=RoleRef
+	// +kubebuilder:validation:Optional
+	Roles []*string `json:"roles,omitempty" tf:"roles,omitempty"`
+
+	// Selector for a list of Role to populate roles.
+	// +kubebuilder:validation:Optional
+	RolesSelector *v1.Selector `json:"rolesSelector,omitempty" tf:"-"`
+
+	// References to Service to populate services.
+	// +kubebuilder:validation:Optional
+	ServiceRef []v1.Reference `json:"serviceRef,omitempty" tf:"-"`
+
+	// +crossplane:generate:reference:type=Service
+	// +crossplane:generate:reference:refFieldName=ServiceRef
 	// +kubebuilder:validation:Optional
 	Services []*string `json:"services,omitempty" tf:"services,omitempty"`
 
+	// Selector for a list of Service to populate services.
+	// +kubebuilder:validation:Optional
+	ServicesSelector *v1.Selector `json:"servicesSelector,omitempty" tf:"-"`
+
+	// References to User to populate users.
+	// +kubebuilder:validation:Optional
+	UserRef []v1.Reference `json:"userRef,omitempty" tf:"-"`
+
+	// +crossplane:generate:reference:type=User
+	// +crossplane:generate:reference:refFieldName=UserRef
 	// +kubebuilder:validation:Optional
 	Users []*string `json:"users,omitempty" tf:"users,omitempty"`
+
+	// Selector for a list of User to populate users.
+	// +kubebuilder:validation:Optional
+	UsersSelector *v1.Selector `json:"usersSelector,omitempty" tf:"-"`
 }
 
 // GroupSpec defines the desired state of Group

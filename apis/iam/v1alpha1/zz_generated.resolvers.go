@@ -90,6 +90,81 @@ func (mg *EmailTemplate) ResolveReferences(ctx context.Context, c client.Reader)
 	return nil
 }
 
+// ResolveReferences of this Group.
+func (mg *Group) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var mrsp reference.MultiResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ManagingOrganization),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.OrganizationRef,
+		Selector:     mg.Spec.ForProvider.ManagingOrganizationSelector,
+		To: reference.To{
+			List:    &OrganizationList{},
+			Managed: &Organization{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.ManagingOrganization")
+	}
+	mg.Spec.ForProvider.ManagingOrganization = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.OrganizationRef = rsp.ResolvedReference
+
+	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
+		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.Roles),
+		Extract:       reference.ExternalName(),
+		References:    mg.Spec.ForProvider.RoleRef,
+		Selector:      mg.Spec.ForProvider.RolesSelector,
+		To: reference.To{
+			List:    &RoleList{},
+			Managed: &Role{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.Roles")
+	}
+	mg.Spec.ForProvider.Roles = reference.ToPtrValues(mrsp.ResolvedValues)
+	mg.Spec.ForProvider.RoleRef = mrsp.ResolvedReferences
+
+	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
+		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.Services),
+		Extract:       reference.ExternalName(),
+		References:    mg.Spec.ForProvider.ServiceRef,
+		Selector:      mg.Spec.ForProvider.ServicesSelector,
+		To: reference.To{
+			List:    &ServiceList{},
+			Managed: &Service{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.Services")
+	}
+	mg.Spec.ForProvider.Services = reference.ToPtrValues(mrsp.ResolvedValues)
+	mg.Spec.ForProvider.ServiceRef = mrsp.ResolvedReferences
+
+	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
+		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.Users),
+		Extract:       reference.ExternalName(),
+		References:    mg.Spec.ForProvider.UserRef,
+		Selector:      mg.Spec.ForProvider.UsersSelector,
+		To: reference.To{
+			List:    &UserList{},
+			Managed: &User{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.Users")
+	}
+	mg.Spec.ForProvider.Users = reference.ToPtrValues(mrsp.ResolvedValues)
+	mg.Spec.ForProvider.UserRef = mrsp.ResolvedReferences
+
+	return nil
+}
+
 // ResolveReferences of this Proposition.
 func (mg *Proposition) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)
@@ -206,6 +281,32 @@ func (mg *Service) ResolveReferences(ctx context.Context, c client.Reader) error
 	}
 	mg.Spec.ForProvider.ApplicationID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.ApplicationRef = rsp.ResolvedReference
+
+	return nil
+}
+
+// ResolveReferences of this User.
+func (mg *User) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.OrganizationID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.OrganizationRef,
+		Selector:     mg.Spec.ForProvider.OrganizationIDSelector,
+		To: reference.To{
+			List:    &OrganizationList{},
+			Managed: &Organization{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.OrganizationID")
+	}
+	mg.Spec.ForProvider.OrganizationID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.OrganizationRef = rsp.ResolvedReference
 
 	return nil
 }

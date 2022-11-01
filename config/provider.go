@@ -44,6 +44,7 @@ func GetProvider() *ujconfig.Provider {
 		iam.RoleConfigure,
 		iam.PasswordPolicyConfigure,
 		iam.RoleSharingPolicyConfigure,
+		iam.UserConfigure,
 	} {
 		configure(pc)
 	}

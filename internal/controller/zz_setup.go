@@ -19,6 +19,7 @@ import (
 	role "github.com/philips-software/provider-hsdp/internal/controller/iam/role"
 	rolesharingpolicy "github.com/philips-software/provider-hsdp/internal/controller/iam/rolesharingpolicy"
 	service "github.com/philips-software/provider-hsdp/internal/controller/iam/service"
+	user "github.com/philips-software/provider-hsdp/internal/controller/iam/user"
 	providerconfig "github.com/philips-software/provider-hsdp/internal/controller/providerconfig"
 )
 
@@ -36,6 +37,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		role.Setup,
 		rolesharingpolicy.Setup,
 		service.Setup,
+		user.Setup,
 		providerconfig.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
