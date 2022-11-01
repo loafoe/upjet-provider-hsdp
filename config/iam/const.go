@@ -1,5 +1,5 @@
 package iam
 
 const (
-        shortGroup = "iam"
+	shortGroup = "iam"
 )

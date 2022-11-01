@@ -67,20 +67,20 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 			"username": creds["username"],
 			"password": creds["password"],
 		}*/
-                ps.Configuration = map[string]interface{}{
-                        "region":              creds["region"],
-                        "environment":         creds["environment"],
-                        "service_id":          creds["service_id"],
-                        "service_private_key": creds["service_private_key"],
-                        "oauth2_client_id":    creds["oauth2_client_id"],
-                        "oauth2_password":     creds["oauth2_password"],
-                        "cartel_host":         creds["cartel_host"],
-                        "cartel_secret":       creds["cartel_secret"],
-                        "cartel_token":        creds["cartel_token"],
-                        "uaa_username":        creds["uaa_username"],
-                        "uaa_password":        creds["uaa_password"],
-                        "debug_log":           creds["debug_log"],
-                }
+		ps.Configuration = map[string]interface{}{
+			"region":              creds["region"],
+			"environment":         creds["environment"],
+			"service_id":          creds["service_id"],
+			"service_private_key": creds["service_private_key"],
+			"oauth2_client_id":    creds["oauth2_client_id"],
+			"oauth2_password":     creds["oauth2_password"],
+			"cartel_host":         creds["cartel_host"],
+			"cartel_secret":       creds["cartel_secret"],
+			"cartel_token":        creds["cartel_token"],
+			"uaa_username":        creds["uaa_username"],
+			"uaa_password":        creds["uaa_password"],
+			"debug_log":           creds["debug_log"],
+		}
 		return ps, nil
 	}
 }

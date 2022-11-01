@@ -35,7 +35,7 @@ func GetProvider() *ujconfig.Provider {
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
 		iam.GroupConfigure,
-                iam.OrgConfigure,
+		iam.OrgConfigure,
 	} {
 		configure(pc)
 	}
