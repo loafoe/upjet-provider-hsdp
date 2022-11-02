@@ -78,8 +78,18 @@ type PasswordPolicyParameters struct {
 	// +kubebuilder:validation:Optional
 	HistoryCount *float64 `json:"historyCount,omitempty" tf:"history_count,omitempty"`
 
-	// +kubebuilder:validation:Required
-	ManagingOrganization *string `json:"managingOrganization" tf:"managing_organization,omitempty"`
+	// +crossplane:generate:reference:type=Organization
+	// +crossplane:generate:reference:refFieldName=OrganizationRef
+	// +kubebuilder:validation:Optional
+	ManagingOrganization *string `json:"managingOrganization,omitempty" tf:"managing_organization,omitempty"`
+
+	// Selector for a Organization to populate managingOrganization.
+	// +kubebuilder:validation:Optional
+	ManagingOrganizationSelector *v1.Selector `json:"managingOrganizationSelector,omitempty" tf:"-"`
+
+	// Reference to a Organization to populate managingOrganization.
+	// +kubebuilder:validation:Optional
+	OrganizationRef *v1.Reference `json:"organizationRef,omitempty" tf:"-"`
 }
 
 // PasswordPolicySpec defines the desired state of PasswordPolicy
