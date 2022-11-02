@@ -7,8 +7,9 @@ import (
 )
 
 const (
-	ConfigPackagePath         = "github.com/philips-software/provider-hsdp/config"
-	ExtractResourceIDFuncPath = ConfigPackagePath + "/common.ExtractResourceID()"
+	configPackagePath = "github.com/philips-software/provider-hsdp/config"
+	// ExtractResourceIDFuncPath contains the path to a custom extractor for Terraform managed resources
+	ExtractResourceIDFuncPath = configPackagePath + "/common.ExtractResourceID()"
 )
 
 // ExtractResourceID extracts the value of `spec.atProvider.id`
