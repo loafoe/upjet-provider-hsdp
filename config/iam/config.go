@@ -65,7 +65,7 @@ func Configure(p *config.Provider) {
 	})
 
 	// PasswordPolicy
-	p.AddResourceConfigurator("hsdp_iam_service", func(r *config.Resource) {
+	p.AddResourceConfigurator("hsdp_iam_password_policy", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 		r.References["managing_organization"] = config.Reference{
 			Type:         "Organization",
