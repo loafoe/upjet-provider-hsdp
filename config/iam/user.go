@@ -1,6 +1,9 @@
 package iam
 
-import "github.com/upbound/upjet/pkg/config"
+import (
+	"github.com/philips-software/provider-hsdp/config/common"
+	"github.com/upbound/upjet/pkg/config"
+)
 
 // UserConfigure configures individual resources by adding custom ResourceConfigurators.
 func UserConfigure(p *config.Provider) {
@@ -8,6 +11,7 @@ func UserConfigure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.References["organization_id"] = config.Reference{
 			Type:         "Organization",
+			Extractor:    common.ExtractResourceIDFuncPath,
 			RefFieldName: "OrganizationRef",
 		}
 	})
