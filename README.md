@@ -54,6 +54,13 @@ Build binary:
 make build
 ```
 
+## Known limitations
+
+* Fields which are marked with `ForceNew` in the Terraform provider do not trigger recreation of 
+resources via Crossplane currently. This is a [known issue](https://github.com/upbound/upjet/issues/78) and will be addressed once [CRD Validation rules suport](https://kubernetes.io/blog/2022/09/23/crd-validation-rules-beta/) becomes
+widely available starting in Kubernetes 1.25+
+
+
 ## Report a Bug
 
 For filing bugs, suggesting improvements, or requesting new features, please
